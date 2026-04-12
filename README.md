@@ -34,8 +34,12 @@ Built to be jusT cOol 👌🦄 !
 - [What's Next](#whats-next)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
+  - [Interactive Mode](#interactive-mode)
+  - [Command Line](#command-line)
   - [Compression](#compression)
 - [Usage](#usage)
+  - [Interactive Mode](#interactive-mode-1)
+  - [Command Line](#command-line-1)
   - [Init](#init)
   - [Config](#config)
   - [Record](#record)
@@ -95,10 +99,24 @@ Built to be jusT cOol 👌🦄 !
 
 # Installation
 
-You need to install [Node.js](https://nodejs.org/en/download/) first, then install the tool globally using this command:
+You need to install [Node.js](https://nodejs.org/en/download/) or [Bun](https://bun.sh) first, then install the tool:
+
+## Using Bun (Recommended)
+
+```bash
+bun install
+```
+
+## Using Yarn
 
 ```bash
 yarn global add terminalizer
+```
+
+## Using npm
+
+```bash
+npm install -g terminalizer
 ```
 
 <p align="center"><img src="/img/install.gif?raw=true"/></p>
@@ -108,6 +126,16 @@ yarn global add terminalizer
 The installation should be very smooth with Node.js v4-v16. For newer versions, if the installation is failed, you may need to install the development tools to build the `C++` add-ons. Check [node-gyp](https://github.com/nodejs/node-gyp#installation).
 
 # Getting Started
+
+## Interactive Mode
+
+Run without arguments to enter interactive mode:
+
+```bash
+bun bin/app.ts
+```
+
+## Command Line
 
 Start recording your terminal using the `record` command.
 
@@ -134,6 +162,16 @@ GIF compression is not implemented yet. For now we recommend [https://gifcompres
 # Usage
 
 > You can use the `--help` option to get more details about the commands and their options
+
+## Interactive Mode
+
+Run without arguments to enter interactive mode with arrow-key navigation:
+
+```bash
+bun bin/app.ts
+```
+
+## Command Line
 
 ```bash
 terminalizer <command> [options]
@@ -471,3 +509,29 @@ yarn global add terminalizer
 # License
 
 This project is under the MIT license.
+
+# Development
+
+This project uses Bun with TypeScript.
+
+## Commands
+
+```bash
+# Install dependencies
+bun install
+
+# Type checking
+bun run typecheck
+
+# Linting
+bun run lint
+
+# Build frontend
+bun run build
+
+# Start in interactive mode
+bun bin/app.ts
+
+# Run a specific command
+bun bin/app.ts record demo
+```
