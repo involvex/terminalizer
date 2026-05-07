@@ -2,7 +2,7 @@
   "name": "terminalizer",
   "version": "0.12.0",
   "description": "Record your terminal and generate animated gif images or share a web player",
-  "main": "bin/app.ts",
+  "main": "dist/app.js",
   "type": "module",
   "author": "Mohammad Fares <faressoft.com@gmail.com>",
   "license": "MIT",
@@ -12,11 +12,12 @@
     "url": "https://github.com/faressoft/terminalizer.git"
   },
   "bin": {
-    "terminalizer": "bin/app.ts"
+    "terminalizer": "./dist/bin/app.js"
   },
   "scripts": {
     "dev": "NODE_ENV=development bunx webpack --watch --config webpack.config.cjs",
     "build": "bun run typecheck && NODE_ENV=production bunx webpack --progress --config webpack.config.cjs",
+    "build:cli": "bun run typecheck && bun run tsc",
     "typecheck": "bun run tsc --noEmit",
     "lint": "bun run eslint . --config eslint.config.cjs",
     "start": "bun run bin/app.ts"

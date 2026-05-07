@@ -1,5 +1,5 @@
 import path from 'path';
-import camelCase from 'lodash/camelCase';
+import camelCase from 'lodash/camelCase.js';
 
 export class DIGraph {
   private _dependencies: Record<string, unknown> = {};
@@ -34,7 +34,7 @@ export class DIGraph {
     return true;
   }
 
-  public require(moduleName: string, key?: string): void {
+  public async require(moduleName: string, key?: string): Promise<void> {
     const parsedModuleName = path.parse(moduleName);
     const resolvedKey = key ?? camelCase(parsedModuleName.name);
 
@@ -44,7 +44,8 @@ export class DIGraph {
       resolvedModuleName = path.resolve(this._getAppRootPath(), moduleName);
     }
 
-    this._dependencies[resolvedKey] = require(resolvedModuleName);
+    const module = await import(resolvedModuleName);
+    this._dependencies[resolvedKey] = module.default || module;
   }
 
   public set(key: string, value: unknown): void {
@@ -56,10 +57,6 @@ export class DIGraph {
   }
 
   private _getAppRootPath(): string {
-    let parent = module.parent;
-    while (parent?.parent) {
-      parent = parent.parent;
-    }
-    return path.dirname(parent?.filename ?? __dirname);
+    return process.cwd();
   }
 }

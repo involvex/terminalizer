@@ -81,7 +81,7 @@ export interface DI {
 }
 
 export interface CommandModule {
-  command: string;
+  commandName: string;
   describe: string;
   handler: (argv: Record<string, unknown>) => void | Promise<void>;
   builder?: (yargs: unknown) => unknown;

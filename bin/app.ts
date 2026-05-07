@@ -5,5 +5,7 @@ if (process.argv.length === 2) {
     startInteractiveMode();
   });
 } else {
-  import('../app.js').then(() => {});
+  import('../app.js').then(({ startYargs }) => {
+    startYargs();
+  });
 }
